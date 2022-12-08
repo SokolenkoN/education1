@@ -12,7 +12,7 @@
                     -{{$character->name}}
                 @endforeach
             </div>
-
+<h1>сенсей Ден</h1>
             <form action="{{route('fraction.destroy', $fraction->id)}}" method="post">
                 @csrf
                 @method('DELETE')
