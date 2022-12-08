@@ -20,9 +20,9 @@ class CharacterController extends Controller
         return view('character.index', compact('characters')); //вернуть на страницу index и передать странице переменную
     }
 
-    public function create()
+    public function create(Character $character)
     {
-        return view('character.create');
+        return view('character.create', compact('character'));
     }
 
     public function store(Request $request)
@@ -48,8 +48,6 @@ class CharacterController extends Controller
 
     public function show(Character $character)
     {
-
-
        return view('character.show', compact('character'));
     }
 

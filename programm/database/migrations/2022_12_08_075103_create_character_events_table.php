@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('character_events', function (Blueprint $table) {
             $table->id();
+            $table->integer('character_id');
+            $table->integer('event_id');
+
+            $table->foreign('character_id')->on('characters')->references('id');
+            $table->foreign('event_id')->on('events')->references('id');
 
             $table->timestamps();
         });

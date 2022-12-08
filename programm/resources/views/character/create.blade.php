@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form action="{{route('character.store')}}" method="post" class="input-form" style="width:15%; margin: 20px auto 0 auto">
+    <form action="{{route('character.store')}}" method="post" class="input-form" style="width:40%; margin: 20px auto 0 auto">
         @csrf
         <div class="mb-3">
             <label for="character">Персонаж</label>
@@ -20,7 +20,15 @@
             <label for="obituary">Некролог</label>
             <input name="obituary" type="text" class="form-control" id="obituary" placeholder="Расскажите о смерте">
         </div>
+        <div class="mb-3">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>В какой фракции состоит персонаж?</option>
 
+            @foreach($character->fractions as $fraction)
+            <option value="{{$fraction->id}}">{{$fraction->title}}</option>
+            @endforeach
+        </select>
+        </div>
             <div class="form-check-inline" style="display: flex; gap: 20px; margin-bottom: 10px">
                 <input class="form-check-input" name="health" type="checkbox" value="Жив" id="health" checked>
                 <label class="form-check-label" for="flexCheckChecked">

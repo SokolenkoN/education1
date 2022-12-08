@@ -27,5 +27,9 @@ class Character extends Model
     public function fraction() {
         return $this->belongsTo(Fraction::class, 'fraction_id', 'id');
     }
+
+    public function events() {
+        return $this->belongsToMany(Event::class, 'character_events', 'character_id', 'event_id');
+    }
 }
 
