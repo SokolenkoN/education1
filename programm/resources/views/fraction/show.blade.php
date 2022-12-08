@@ -12,6 +12,7 @@
                     -{{$character->name}}
                 @endforeach
             </div>
+            aтест блин
             <form action="{{route('fraction.destroy', $fraction->id)}}" method="post">
                 @csrf
                 @method('DELETE')
