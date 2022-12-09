@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CharacterResource;
+use App\Http\Resources\FractionResource;
 use App\Models\Character;
+use App\Models\CharacterEvent;
+use App\Models\Event;
 use App\Models\Fraction;
 use App\Models\Post;
 use http\Encoding\Stream\Debrotli;
@@ -20,9 +23,11 @@ class CharacterController extends Controller
         return view('character.index', compact('characters')); //вернуть на страницу index и передать странице переменную
     }
 
-    public function create(Character $character)
+    public function create()
     {
-        return view('character.create', compact('character'));
+        $fractions = Fraction::all();
+        $events = Event::all();
+        return view('character.create', compact('fractions', 'events'));
     }
 
     public function store(Request $request)
@@ -33,6 +38,8 @@ class CharacterController extends Controller
             'biography' => 'string',
             'obituary' => 'nullable|string',
             'health' => 'string',
+            'fraction_id' => '',
+            'events' => '',
         ]);
 
         if (isset($data['health'])) {
@@ -41,19 +48,25 @@ class CharacterController extends Controller
             $data['health'] = 'Мёртв';
         }
 
-        Character::create($data); // создать сущности из значений переменной data
-
+        $events = $data['events'];
+        unset($data['events']);
+//     dd($events, $data);
+       $character = Character::create($data); // создать сущности из значений переменной data
+//        $character->save();
+        $character->events()->attach($events);
         return redirect()->route('character.index');
     }
 
     public function show(Character $character)
     {
+       // $character = Character::query()->where('id', '=', 1)->toSql();
        return view('character.show', compact('character'));
     }
 
     public function edit(Character $character)
     {
-        return view('character.edit', compact('character'));
+        $fractions = Fraction::all();
+        return view('character.edit', compact('character', 'fractions'));
     }
 
     public function update(Character $character)
@@ -64,6 +77,7 @@ class CharacterController extends Controller
             'biography' => 'string',
             'obituary' => 'nullable|string',
             'health' => 'string',
+            'fraction_id' => 'integer',
         ]);
 
         if (isset($data['health'])) {

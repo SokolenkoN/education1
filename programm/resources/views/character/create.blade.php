@@ -21,21 +21,29 @@
             <input name="obituary" type="text" class="form-control" id="obituary" placeholder="Расскажите о смерте">
         </div>
         <div class="mb-3">
-        <select class="form-select" aria-label="Default select example">
-            <option selected>В какой фракции состоит персонаж?</option>
+            <label for="fraction_id">В какой фракции состоит персонаж?</label>
+        <select class="form-select" aria-label="Default select example" name="fraction_id">
 
-            @foreach($character->fractions as $fraction)
+            @foreach($fractions as $fraction)
             <option value="{{$fraction->id}}">{{$fraction->title}}</option>
             @endforeach
         </select>
         </div>
-            <div class="form-check-inline" style="display: flex; gap: 20px; margin-bottom: 10px">
+        <div class="mb-3">
+            <label for="events">В каких событиях учавствовал персонаж?</label>
+            <select class="form-control" multiple aria-label="multiple select example" id="events" name="events[]">
+
+                @foreach($events as $event)
+                    <option value="{{$event->id}}">{{$event->title}}</option>
+                @endforeach
+            </select>
+        </div>
+            <div class="form-check-inline" style="display: flex; gap: 20px; margin-bottom: 20px">
                 <input class="form-check-input" name="health" type="checkbox" value="Жив" id="health" checked>
                 <label class="form-check-label" for="flexCheckChecked">
                     Персонаж жив?
                 </label>
             </div>
-
         <button type="submit" class="btn btn-primary" style="margin: 0 auto">Отправить</button>
     </form>
 @endsection

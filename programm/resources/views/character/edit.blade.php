@@ -21,8 +21,16 @@
             <label for="obituary">Некролог</label>
             <input name="obituary" type="text" class="form-control" id="obituary" placeholder="Расскажите о смерте" value="{{$character->obituary}}">
         </div>
+        <div  style="margin-bottom: 20px">
+            <label for="fraction_id">В какой фракции состоит персонаж?</label>
+            <select class="form-select" aria-label="Default select example" name="fraction_id">
 
-            <div class="form-check-inline" style="display: flex; gap: 20px; margin-bottom: 10px">
+                @foreach($fractions as $fraction)
+                    <option {{$fraction->id === $character->fraction->id ? ' selected' : ''}} value="{{$fraction->id}}">{{$fraction->title}}</option>
+                @endforeach
+            </select>
+        </div>
+            <div class="form-check-inline" style="display: flex; gap: 20px; margin-bottom: 0px">
                 <input class="form-check-input" name="health" type="checkbox" value="Жив" id="health">
                 <label class="form-check-label" for="flexCheckChecked">
                     Персонаж жив?

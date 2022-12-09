@@ -12,7 +12,7 @@ class Character extends Model
     use SoftDeletes;
     protected $guarded = [];
 
-    public $incrementing = false;
+
 
     protected $fillable = [
         'id',
