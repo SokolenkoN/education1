@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('name', 20);
+            $table->string('name', 30);
             $table->unsignedBigInteger('age');
             $table->text('biography');
             $table->text('obituary')->nullable();
