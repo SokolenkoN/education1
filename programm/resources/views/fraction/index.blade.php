@@ -2,7 +2,7 @@
 
 @section('content')
 
-        <a class="btn btn-primary" style="width:20%; margin: 40px 10% 0px" href="{{route('fraction.create')}}">Создание фракцию</a>
+        <a class="btn btn-primary" style="width:20%; margin: 40px 10% 0px" href="{{route('fraction.create')}}">Создать фракцию</a>
 
 <div style="width: 80%; margin: 0px 10%">
 

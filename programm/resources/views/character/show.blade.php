@@ -8,7 +8,13 @@
             <div class="me-3">Некролог: {{$character->obituary}}</div>
             <div class="me-3">Статус: {{$character->health}}</div>
         Состоит во фракции:
-        {{$character->fraction->title}}
+        {{$character->fraction->title}}<br>
+
+        Пережил такие события как:
+        @foreach($events as $event)
+            <br>
+            - {{$event->title}}
+        @endforeach
 
     <div>
 

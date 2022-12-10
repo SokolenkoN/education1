@@ -15,23 +15,20 @@ return new class extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('name', 22);
+            $table->string('name', 20);
             $table->unsignedBigInteger('age');
             $table->text('biography');
             $table->text('obituary')->nullable();
             $table->string('health');
 
-            $table->unsignedInteger('fraction_id')->nullable();
-
-            $table->foreign('fraction_id')->on('fractions')->references('id');
+            $table->unsignedInteger('fraction_id');
 
             $table->timestamps();
-
             $table->softDeletes();
         });
     }
 
-    /**ph
+    /**
      * Reverse the migrations.
      *
      * @return void

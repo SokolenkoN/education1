@@ -4,16 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Character extends Model
 {
     use HasFactory;
-    use SoftDeletes;
-    protected $guarded = [];
-
-
-
     protected $fillable = [
         'id',
         'name',
@@ -25,11 +19,9 @@ class Character extends Model
     ];
 
     public function fraction() {
-        return $this->belongsTo(Fraction::class, 'fraction_id', 'id');
+        return $this->belongsTo(Fraction::class);
     }
-
     public function events() {
-        return $this->belongsToMany(Event::class, 'character_events', 'character_id', 'event_id');
+        return $this->belongsToMany(Event::class);
     }
 }
-
