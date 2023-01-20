@@ -7,10 +7,14 @@
         <div class="mb-3">
             <label for="character">Персонаж</label>
             <input type="text" name="name" class="form-control" id="character" placeholder="Введите Имя и Фамилию персонажа">
+            @error('name')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="age">Возраст</label>
             <input name="age" type="number" class="form-control" id="age" placeholder="Введите возраст персонажа">
+
         </div>
         <div class="mb-3">
             <label for="biography">Биография</label>

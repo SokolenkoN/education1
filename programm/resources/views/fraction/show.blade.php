@@ -5,6 +5,7 @@
         <div class="me-3">Название: {{$fraction->title}}</div>
         <div class="me-3">Описание: {{$fraction->description}}</div>
         <div>
+
             <div>
                 Члены фракии:
                 @foreach($fraction->characters as $character)
@@ -12,6 +13,7 @@
                     -{{$character->name}}
                 @endforeach
             </div>
+
             <form action="{{route('fraction.destroy', $fraction->id)}}" method="post">
                 @csrf
                 @method('DELETE')

@@ -26,6 +26,7 @@ class CharacterFactory extends Factory
             'obituary' => '',
             'health' => $this->faker->randomElement($array = ['Жив', 'Мёртв']),
             'fraction_id' => Fraction::get()->random()->id,
+            'user_id' => $this->faker->randomElement($array = ['1', '2', '3']),
         ];
     }
 }

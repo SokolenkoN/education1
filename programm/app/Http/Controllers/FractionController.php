@@ -7,9 +7,11 @@ use App\Http\Resources\FractionResource;
 use App\Models\Fraction;
 use App\Models\Character;
 use App\Models\Post;
+use App\Models\User;
 use http\Encoding\Stream\Debrotli;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Log;
 
 class FractionController extends Controller
 {
@@ -29,20 +31,27 @@ class FractionController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([ // validate проверяет значения в форме
-            'title' => 'string',
-            'description' => 'string',
+            'title' => 'required|string',
+            'description' => 'required|string',
         ]);
 
-        Fraction::create($data); // создать сущности из значений переменной data
-
-        return redirect()->route('fraction.index');
+        $fraction = Fraction::create($data); // создать сущности из значений переменной data
+        if ($fraction) {
+            Log::channel('fraction_log')->info('Создана фракция', $data);
+            return redirect()->route('fraction.index');
+        }
+        Log::channel('fraction_log')->error('Неудачная попытка создания', $data);
+        return view('fraction.index')->withErrors([
+            'formError' => 'errors!'
+        ]);
     }
 
     public function show(Fraction $fraction)
     {
         //$characters = CharacterResource::collection($fraction->characters);
+        $user = User::all();
 
-        return view('fraction.show', compact('fraction'));
+        return view('fraction.show', compact('fraction', 'user'));
     }
 
     public function edit(Fraction $fraction)
@@ -58,12 +67,14 @@ class FractionController extends Controller
         ]);
 
         $fraction->update($data);
+        Log::channel('fraction_log')->info('Обновлена фракция', $data);
         return redirect()->route('fraction.show', $fraction->id);
     }
 
     public function destroy(Fraction $fraction)
     {
         $fraction->delete();
+        Log::channel('fraction_log')->info('Удалина фракция', $fraction->toArray() );
         return redirect()->route('fraction.index');
     }
 }

@@ -1,7 +1,5 @@
-@extends('layouts.head')
-
+@extends('layouts.admin')
 @section('content')
-
     <div style="width: 450px">
 
         @foreach($characters as $character) <br>
@@ -13,7 +11,7 @@
         </div>
     </div>
 
-    <form action="{{route('character.index')}}" method="GET"
+    <form action="{{route('admin.character')}}" method="GET"
           style="width: 350px; display: flex; flex-direction: column; align-items: center;">
         <div class="mb-3" style="width: 100%;">
             <label for="character" class="form-label">Поиск</label>
@@ -39,6 +37,4 @@
         <button type="submit" class="btn btn-primary" style="width: 50%">Найти</button>
     </form>
 
-
 @endsection
-

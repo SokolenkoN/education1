@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Fraction::factory(10)->create();
-        $events = Event::factory(30)->create();
+        $events = Event::factory(10)->create();
         $characters = Character::factory(100)->create();
 
         foreach ($characters as $character) {
