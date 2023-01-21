@@ -37,4 +37,5 @@
         <button type="submit" class="btn btn-primary" style="width: 50%">Найти</button>
     </form>
 
+    <a class="btn btn-primary" style="width:15%; margin: 500px 0px 0px" href="{{route('admin.character.create')}}">Создать фракцию</a>
 @endsection

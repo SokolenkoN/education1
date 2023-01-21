@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\Authenticate;
-use App\Models\Event;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -16,7 +14,7 @@ class UserController extends Controller
     }
     public function registration(Request $request) {
         if (Auth::check()) {
-            return redirect('privat');
+            return redirect('start');
         }
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],

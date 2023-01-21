@@ -26,11 +26,11 @@
 
             <div class="col-9 header-menu">
                 <ul class="navbar-nav flex-row">
-
+                    @can('view', auth()->user())
                     <li>
                         <a class="nav-link" href="{{route('admin.main')}}">admin</a>
                     </li>
-
+                    @endcan
                     <li>
                         <a class="nav-link" href="{{route('start.index')}}">Главная</a>
                     </li>
@@ -53,12 +53,12 @@
                             <a class="nav-link" href="{{route('profile.index')}}">{{ Auth::user()->name }}</a>
                         </li>
 
-                        <a class="nav-link" href="{{ route('logout1') }}"
+                        <a class="nav-link" href="{{ route('logout') }}"
                            >
                             Выйти
                         </a>
 
-                        <form id="logout-form" action="{{ route('logout1') }}" method="POST" class="d-none">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
                     @endguest

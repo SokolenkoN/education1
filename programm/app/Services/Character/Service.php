@@ -3,9 +3,7 @@
 
 namespace App\Services\Character;
 
-
 use App\Models\Character;
-use http\Encoding\Stream\Debrotli;
 
 class Service
 {
@@ -25,13 +23,26 @@ class Service
         $character->events()->attach($events);
     }
 
-    public function update($character, $data)
-    {
+    public function update($character, $data) {
         if (isset($data['health'])) {
             $data['health'] = 'Жив';
         } else {
             $data['health'] = 'Мёртв';
         }
         $character->update($data);
+    }
+
+    public function filter($data, $characters) {
+        if (isset($data['name'])) {
+            $characters->where('name', 'like', "%{$data['name']}%");
+        };
+
+        if (isset($data['age'])) {
+            $characters->where('age', '=', "{$data['age']}");
+        };
+
+        if (isset($data['fraction_id'])) {
+            $characters->where('fraction_id', '=', "{$data['fraction_id']}");
+        };
     }
 }

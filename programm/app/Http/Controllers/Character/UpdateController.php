@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Character;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Character\UpdateRequest;
 use App\Models\Character;
 

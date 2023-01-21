@@ -26,10 +26,11 @@ class FilterRequest extends FormRequest
         return [
             'name' => 'nullable|string',
             'age' => 'nullable|integer',
-            'biography' => 'string',
+            'biography' => 'nullable|string',
             'obituary' => 'nullable|string',
             'health' => 'nullable|string',
             'fraction_id' => 'nullable|integer',
+            'user_id' => 'nullable|integer',
             'events' => '',
         ];
     }
